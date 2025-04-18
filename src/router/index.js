@@ -1,26 +1,43 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import Login from "../views/LoginView.vue";
+import AdminDashboard from "../views/AdminDashboard.vue";
+import UserDashboard from "../views/UserDashboard.vue";
+import { useAuthStore } from "../store/auth";
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "login",
+    component: Login,
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/admin-dashboard",
+    name: "admin-dashboard",
+    component: AdminDashboard,
+    meta: { requiresAuth: true, role: "admin" },
+  },
+  {
+    path: "/user-dashboard",
+    name: "user-dashboard",
+    component: UserDashboard,
+    meta: { requiresAuth: true, role: "user" },
   },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore();
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    next({ name: "login" });
+  } else if (to.meta.role && authStore.userRole !== to.meta.role) {
+    next({ name: "home" });
+  } else {
+    next();
+  }
 });
 
 export default router;
