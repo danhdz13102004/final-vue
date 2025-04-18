@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
-import jwtDecode from "jwt-decode";
 import Login from "@/views/auth/LoginView.vue";
 import Register from "@/views/auth/RegisterView.vue";
 import Dashboard from "@/views/DashboardView.vue";
 import EmployeeList from "@/views/employee/EmployeeList.vue";
 import DepartmentList from "@/views/department/DepartmentList.vue";
 import AppLayout from "@/views/AppLayout.vue";
+import { useUserStore } from "@/stores/user.js";
 const routes = [
   { path: "/login", component: Login },
   { path: "/register", component: Register },
@@ -35,8 +35,11 @@ const router = createRouter({
 
 // Navigation Guard
 router.beforeEach((to, from, next) => {
-  ``;
-  const token = localStorage.getItem("token");
+  const userStore = useUserStore();
+  userStore.loadFromLocalStorage(); // Load token and role from local storage
+  const role = userStore.role;
+  console.log("Role:", role);
+  const token = userStore.token;
   const isLoggedIn = !!token;
 
   if (to.meta.requireLogin && !isLoggedIn) {
@@ -52,20 +55,12 @@ router.beforeEach((to, from, next) => {
       return next("/login");
     }
     try {
-      const decoded = jwtDecode(token);
-      // const decoded = {
-      //   role: "Admin", // Mocked role for demonstration
-      // };
-      console.log("Decoded JWT:", decoded);
-      if (decoded.role !== "Admin") {
+      if (role !== "admin") {
         // Logged in but not Admin: redirect to dashboard
         // localStorage.setItem("authError", t("error.unauthorized"));
         return next("/dashboard");
       }
     } catch (error) {
-      // Invalid token: redirect to login
-      console.error("Invalid JWT token:", error);
-      // localStorage.setItem("authError", t("error.unauthorized"));
       return next("/login");
     }
   }

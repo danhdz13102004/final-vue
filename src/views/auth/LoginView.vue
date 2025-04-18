@@ -21,12 +21,14 @@
 import { ref } from "vue";
 import authService from "@/services/auth.service";
 import router from "@/router";
+import { useUserStore } from "@/stores/user";
 
 const email = ref("");
 const password = ref("");
 
 const login = () => {
   console.log("Login info:", email.value, password.value);
+  // alert("Login info: " + email.value + " " + password.value);
   const credentials = {
     email: email.value,
     password: password.value,
@@ -41,7 +43,10 @@ const login = () => {
       // Lưu token vào localStorage
       console.log("Token:", response.data);
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
+      // localStorage.setItem("user", JSON.stringify(response.data.user));
+      const userStore = useUserStore();
+      userStore.setToken(response.data.token, response.data.user.role);
+
       // Chuyển hướng đến trang chính
       router.push("/");
     })

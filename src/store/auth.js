@@ -10,8 +10,9 @@ export const useAuthStore = defineStore("auth", {
     isAuthenticated: (state) => !!state.token,
   },
   actions: {
-    login(token) {
+    login(token, role) {
       this.token = token;
+      this.role = role;
       saveToken(token);
       this.userRole = parseToken(token).role;
     },

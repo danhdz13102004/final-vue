@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Tạo instance axios với cấu hình mặc định
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:6969/api/",
+  baseURL: "https://nodejs-1-hywy.onrender.com/api/",
   timeout: 5000, // Thời gian timeout
 });
 

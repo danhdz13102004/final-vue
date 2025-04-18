@@ -17,7 +17,8 @@
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
-import axiosInstance from "../../axios"; // Giả sử bạn có axiosInstance để gọi API
+import axiosInstance from "../../axios";
+import { useUserStore } from "@/stores/user";
 
 // Khởi tạo i18n và router
 const { locale } = useI18n();
@@ -36,11 +37,10 @@ const changeLang = () => {
 const logout = async () => {
   try {
     // Gọi API đăng xuất (nếu có)
-    await axiosInstance.post("/logout"); // Thay '/logout' bằng endpoint thực tế của bạn
-    // Xóa token (giả sử lưu trong localStorage)
+    await axiosInstance.post("/auth/logout"); // Thay '/logout' bằng endpoint thực tế của bạn
+    const userStore = useUserStore();
+    userStore.logout();
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    // Chuyển hướng về trang đăng nhập
     router.push("/login");
   } catch (error) {
     console.error("Error during logout:", error);
