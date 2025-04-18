@@ -1,0 +1,82 @@
+{
+    "app": {
+      "title": "Hệ Thống Quản Lý Tòa Nhà"
+    },
+    "nav": {
+      "dashboard": "Trang Chủ",
+      "departments": "Phòng Ban",
+      "employees": "Nhân Viên"
+    },
+    "auth": {
+      "login": "Đăng Nhập",
+      "logout": "Đăng Xuất",
+      "email": "Email",
+      "password": "Mật Khẩu"
+    },
+    "dashboard": {
+      "title": "Trang Chủ",
+      "total_departments": "Tổng Số Phòng Ban",
+      "total_employees": "Tổng Số Nhân Viên",
+      "user_role": "Vai Trò Của Bạn",
+      "view_all": "Xem Tất Cả",
+      "departments_overview": "Tổng Quan Phòng Ban",
+      "employees_by_department": "Nhân Viên Theo Phòng Ban"
+    },
+    "department": {
+      "list_title": "Phòng Ban",
+      "add": "Thêm Phòng Ban",
+      "edit": "Sửa Phòng Ban",
+      "name": "Tên Phòng Ban",
+      "description": "Mô Tả",
+      "location": "Vị Trí",
+      "created": "Tạo phòng ban thành công",
+      "updated": "Cập nhật phòng ban thành công",
+      "deleted": "Xóa phòng ban thành công",
+      "delete_confirm": "Xóa Phòng Ban",
+      "delete_message": "Bạn có chắc chắn muốn xóa phòng ban {name}?"
+    },
+    "employee": {
+      "list_title": "Nhân Viên",
+      "add": "Thêm Nhân Viên",
+      "edit": "Sửa Nhân Viên",
+      "firstName": "Tên",
+      "lastName": "Họ",
+      "email": "Email",
+      "phone": "Điện Thoại",
+      "department": "Phòng Ban",
+      "role": "Vai Trò",
+      "password": "Mật Khẩu",
+      "created": "Tạo nhân viên thành công",
+      "updated": "Cập nhật nhân viên thành công",
+      "deleted": "Xóa nhân viên thành công",
+      "delete_confirm": "Xóa Nhân Viên",
+      "delete_message": "Bạn có chắc chắn muốn xóa nhân viên {name}?"
+    },
+    "common": {
+      "search": "Tìm Kiếm",
+      "actions": "Thao Tác",
+      "save": "Lưu",
+      "cancel": "Hủy",
+      "delete": "Xóa"
+    },
+    "validation": {
+      "name_required": "Tên là bắt buộc",
+      "email_required": "Email là bắt buộc",
+      "email_valid": "Email phải hợp lệ",
+      "password_required": "Mật khẩu là bắt buộc",
+      "password_length": "Mật khẩu phải có ít nhất 6 ký tự",
+      "department_name_required": "Tên phòng ban là bắt buộc",
+      "department_required": "Phòng ban là bắt buộc",
+      "role_required": "Vai trò là bắt buộc"
+    },
+    "error": {
+      "login_failed": "Đăng nhập thất bại. Vui lòng kiểm tra thông tin đăng nhập.",
+      "operation_failed": "Thao tác thất bại. Vui lòng thử lại."
+    },
+    "header": {
+      "welcome": "Chào mừng",
+      "settings": "Cài Đặt",
+      "profile": "Hồ Sơ",
+      "logout": "Đăng Xuất"
+    }
+  }
