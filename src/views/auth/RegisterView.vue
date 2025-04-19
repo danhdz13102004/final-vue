@@ -65,7 +65,7 @@ const register = async () => {
     username: name.value,
     email: email.value,
     password: password.value,
-    role: "admin",
+    role: "staff",
   };
 
   console.log("Registering with credentials:", credentials);
