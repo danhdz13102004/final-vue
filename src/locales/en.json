@@ -1,82 +1,90 @@
 {
-    "app": {
-      "title": "Building Management System"
-    },
-    "nav": {
-      "dashboard": "Dashboard",
-      "departments": "Departments",
-      "employees": "Employees"
-    },
-    "auth": {
-      "login": "Login",
-      "logout": "Logout",
-      "email": "Email",
-      "password": "Password"
-    },
-    "dashboard": {
-      "title": "Dashboard",
-      "total_departments": "Total Departments",
-      "total_employees": "Total Employees",
-      "user_role": "Your Role",
-      "view_all": "View All",
-      "departments_overview": "Departments Overview",
-      "employees_by_department": "Employees by Department"
-    },
-    "department": {
-      "list_title": "Departments",
-      "add": "Add Department",
-      "edit": "Edit Department",
-      "name": "Department Name",
-      "description": "Description",
-      "location": "Location",
-      "created": "Department created successfully",
-      "updated": "Department updated successfully",
-      "deleted": "Department deleted successfully",
-      "delete_confirm": "Delete Department",
-      "delete_message": "Are you sure you want to delete department {name}?"
-    },
-    "employee": {
-      "list_title": "Employees",
-      "add": "Add Employee",
-      "edit": "Edit Employee",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "email": "Email",
-      "phone": "Phone",
-      "department": "Department",
-      "role": "Role",
-      "password": "Password",
-      "created": "Employee created successfully",
-      "updated": "Employee updated successfully",
-      "deleted": "Employee deleted successfully",
-      "delete_confirm": "Delete Employee",
-      "delete_message": "Are you sure you want to delete employee {name}?"
-    },
-    "common": {
-      "search": "Search",
-      "actions": "Actions",
-      "save": "Save",
-      "cancel": "Cancel",
-      "delete": "Delete"
-    },
-    "validation": {
-      "name_required": "Name is required",
-      "email_required": "Email is required",
-      "email_valid": "Email must be valid",
-      "password_required": "Password is required",
-      "password_length": "Password must be at least 6 characters",
-      "department_name_required": "Department name is required",
-      "department_required": "Department is required",
-      "role_required": "Role is required"
-    },
-    "error": {
-      "login_failed": "Login failed. Please check your credentials.",
-      "operation_failed": "Operation failed. Please try again."
-    },
-    "header": {
-      "welcome": "Welcome, {name}!",
-      "settings": "Settings",
-      "profile": "Profile",
-      "logout": "Logout"
-    }
+  "app": {
+    "title": "Building Management System"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "departments": "Departments",
+    "employees": "Employees"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "total_departments": "Total Departments",
+    "total_employees": "Total Employees",
+    "user_role": "Your Role",
+    "view_all": "View All",
+    "departments_overview": "Departments Overview",
+    "employees_by_department": "Employees by Department"
+  },
+  "department": {
+    "list_title": "Departments",
+    "add": "Add Department",
+    "edit": "Edit Department",
+    "name": "Department Name",
+    "description": "Description",
+    "location": "Location",
+    "created": "Department created successfully",
+    "updated": "Department updated successfully",
+    "deleted": "Department deleted successfully",
+    "delete_confirm": "Delete Department",
+    "delete_message": "Are you sure you want to delete department {name}?"
+  },
+  "employee": {
+    "list_title": "Employees",
+    "add": "Add Employee",
+    "edit": "Edit Employee",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "department": "Department",
+    "role": "Role",
+    "password": "Password",
+    "created": "Employee created successfully",
+    "updated": "Employee updated successfully",
+    "deleted": "Employee deleted successfully",
+    "delete_confirm": "Delete Employee",
+    "delete_message": "Are you sure you want to delete employee {name}?",
+    "select_department": "Select Department"
+  },
+  "common": {
+    "search": "Search",
+    "actions": "Actions",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "updating": "Updating...",
+    "loading": "Loading...",
+    "submitting": "Submitting...",
+    "deleting": "Deleting..."
+  },
+  "validation": {
+    "name_required": "Name is required",
+    "email_required": "Email is required",
+    "email_valid": "Email must be valid",
+    "password_required": "Password is required",
+    "password_length": "Password must be at least 6 characters",
+    "department_name_required": "Department name is required",
+    "department_required": "Department is required",
+    "role_required": "Role is required"
+  },
+  "errors": {
+    "login_failed": "Login failed. Please check your credentials.",
+    "operation_failed": "Operation failed. Please try again.",
+    "unauthorized_message": "You are not authorized to access this page.",
+    "back_home": "Go back to homepage",
+    "update_employee": "Fail to update employee"
+  },
+  "header": {
+    "welcome": "Welcome, {name}!",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Logout"
   }
+}

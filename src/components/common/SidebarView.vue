@@ -4,10 +4,20 @@
       <router-link to="/dashboard" class="nav-link" active-class="active">
         🏠 {{ $t("nav.dashboard") }}
       </router-link>
-      <router-link to="/departments" class="nav-link" active-class="active">
+      <router-link
+        v-if="role === 'admin'"
+        to="/departments"
+        class="nav-link"
+        active-class="active"
+      >
         🏢 {{ $t("nav.departments") }}
       </router-link>
-      <router-link to="/employees" class="nav-link" active-class="active">
+      <router-link
+        v-if="role === 'admin'"
+        to="/employees"
+        class="nav-link"
+        active-class="active"
+      >
         👨‍💼 {{ $t("nav.employees") }}
       </router-link>
     </nav>
@@ -16,9 +26,14 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-
+import { useUserStore } from "@/stores/user.js";
 // Initialize i18n to access translations
 useI18n();
+
+const userStore = useUserStore();
+userStore.loadFromLocalStorage();
+// Lấy role của user
+const role = userStore.role;
 </script>
 
 <style scoped>

@@ -1,3 +1,51 @@
+<script setup>
+import { ref, watch } from "vue";
+import authService from "@/services/auth.service";
+import router from "@/router";
+import { useUserStore } from "@/stores/user";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+console.log("Route query:", route.query);
+const email = ref("");
+const password = ref("");
+const errorMessage = ref("");
+const successMessage = ref(route.query?.successMessage || "");
+// console.log("Success message from route:", route.query);
+
+const login = () => {
+  errorMessage.value = ""; // Clear previous errors
+  successMessage.value = ""; // Clear success when trying to login
+
+  const credentials = {
+    email: email.value,
+    password: password.value,
+  };
+
+  authService
+    .login(credentials)
+    .then((response) => {
+      localStorage.setItem("token", response.data.token);
+      const userStore = useUserStore();
+      userStore.setToken(response.data.token, response.data.user.role);
+      router.push("/dashboard");
+    })
+    .catch((error) => {
+      console.error("Login failed:", error);
+      errorMessage.value = "Login failed! Please check your email or password.";
+    });
+};
+
+const goToRegister = () => {
+  router.push("/register");
+};
+
+watch([email, password], () => {
+  errorMessage.value = "";
+  successMessage.value = "";
+});
+</script>
+
 <template>
   <div class="form-container">
     <h1 class="title">Login</h1>
@@ -12,50 +60,18 @@
         <input type="password" v-model="password" required />
       </div>
 
+      <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+      <p v-if="successMessage" class="success-message">{{ successMessage }}</p>
+
       <button type="submit">Login</button>
+
+      <div class="redirect-register">
+        Don't have an account?
+        <a @click="goToRegister" class="register-link">Register here</a>
+      </div>
     </form>
   </div>
 </template>
-
-<script setup>
-import { ref } from "vue";
-import authService from "@/services/auth.service";
-import router from "@/router";
-import { useUserStore } from "@/stores/user";
-
-const email = ref("");
-const password = ref("");
-
-const login = () => {
-  console.log("Login info:", email.value, password.value);
-  // alert("Login info: " + email.value + " " + password.value);
-  const credentials = {
-    email: email.value,
-    password: password.value,
-  };
-  console.log("Logging in with credentials:", credentials);
-  // Gửi request API tại đây nếu cần
-  authService
-    .login(credentials)
-    .then((response) => {
-      console.log("Login successful:", response);
-      // alert("Login successful!");
-      // Lưu token vào localStorage
-      console.log("Token:", response.data);
-      localStorage.setItem("token", response.data.token);
-      // localStorage.setItem("user", JSON.stringify(response.data.user));
-      const userStore = useUserStore();
-      userStore.setToken(response.data.token, response.data.user.role);
-
-      // Chuyển hướng đến trang chính
-      router.push("/");
-    })
-    .catch((error) => {
-      console.error("Login failed:", error);
-      alert("Login failed! Please check your credentials.");
-    });
-};
-</script>
 
 <style scoped>
 .form-container {
@@ -108,5 +124,32 @@ button {
 
 button:hover {
   background-color: #2980b9;
+}
+
+.redirect-register {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.register-link {
+  color: #3498db;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.register-link:hover {
+  color: #2980b9;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.success-message {
+  color: green;
+  margin-top: 10px;
+  text-align: center;
 }
 </style>

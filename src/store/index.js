@@ -1,15 +1,9 @@
-// import Vue from "vue";
-// import Vuex from "vuex";
-// import auth from "./modules/auth";
-// import department from "./modules/department";
-// import employee from "./modules/employee";
+import { createStore } from "vuex";
 
-// Vue.use(Vuex);
-
-// export default new Vuex.Store({
-//   modules: {
-//     auth,
-//     department,
-//     employee,
-//   },
-// });
+export default createStore({
+  state: {},
+  getters: {},
+  mutations: {},
+  actions: {},
+  modules: {},
+});

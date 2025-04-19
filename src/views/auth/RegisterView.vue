@@ -1,6 +1,11 @@
 <template>
   <div class="form-container">
     <h1 class="title">Register</h1>
+
+    <div v-if="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
     <form @submit.prevent="register">
       <div class="form-group">
         <label>Name:</label>
@@ -22,7 +27,14 @@
         <input type="password" v-model="confirmPassword" required />
       </div>
 
-      <button type="submit">Register</button>
+      <button type="submit" :disabled="isSubmitting">
+        {{ isSubmitting ? "Registering..." : "Register" }}
+      </button>
+
+      <div class="redirect-login">
+        Already have an account?
+        <a @click="goToLogin" class="login-link">Login here</a>
+      </div>
     </form>
   </div>
 </template>
@@ -31,39 +43,58 @@
 import { ref } from "vue";
 import authService from "@/services/auth.service";
 import router from "@/router";
+
 const name = ref("");
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
+const errorMessage = ref("");
+const isSubmitting = ref(false);
 
-const register = () => {
+const register = async () => {
+  // Reset error message
+  errorMessage.value = "";
+
+  // Validate passwords match
   if (password.value !== confirmPassword.value) {
-    alert("Passwords do not match!");
+    errorMessage.value = "Mật khẩu không khớp!";
     return;
   }
-
-  console.log("Register info:", name.value, email.value, password.value);
 
   const credentials = {
     username: name.value,
     email: email.value,
     password: password.value,
-    role: "staff",
+    role: "admin",
   };
 
   console.log("Registering with credentials:", credentials);
 
-  authService
-    .register(credentials)
-    .then((response) => {
-      console.log("Registration successful:", response);
-      alert("Registration successful!");
-      router.push("/login");
-    })
-    .catch((error) => {
-      console.error("Registration error:", error);
-      // Handle registration error
+  try {
+    isSubmitting.value = true;
+    const response = await authService.register(credentials);
+    console.log("Registration successful:", response);
+
+    router.push({
+      path: "/login",
+      query: { successMessage: "Đăng kí thành công! Vui lòng đăng nhập." },
     });
+  } catch (error) {
+    console.error("Registration error:", error);
+    errorMessage.value = "Đăng kí thất bại! Vui lòng thử lại.";
+
+    // Check for specific error messages from API if available
+    if (error.response && error.response.data && error.response.data.message) {
+      errorMessage.value = error.response.data.message;
+    }
+  } finally {
+    isSubmitting.value = false;
+  }
+};
+
+// Add function to redirect to login page
+const goToLogin = () => {
+  router.push("/login");
 };
 </script>
 
@@ -80,6 +111,15 @@ const register = () => {
   font-size: 40px;
   text-align: center;
   margin-bottom: 20px;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
 form {
@@ -118,5 +158,25 @@ button {
 
 button:hover {
   background-color: #27ae60;
+}
+
+button:disabled {
+  background-color: #95e9af;
+  cursor: not-allowed;
+}
+
+.redirect-login {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.login-link {
+  color: #3498db;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.login-link:hover {
+  color: #2980b9;
 }
 </style>

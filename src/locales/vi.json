@@ -50,14 +50,20 @@
       "updated": "Cập nhật nhân viên thành công",
       "deleted": "Xóa nhân viên thành công",
       "delete_confirm": "Xóa Nhân Viên",
-      "delete_message": "Bạn có chắc chắn muốn xóa nhân viên {name}?"
+      "delete_message": "Bạn có chắc chắn muốn xóa nhân viên {name}?",
+      "select_department": "Chọn Phòng Ban"
     },
     "common": {
       "search": "Tìm Kiếm",
       "actions": "Thao Tác",
       "save": "Lưu",
       "cancel": "Hủy",
-      "delete": "Xóa"
+      "delete": "Xóa",
+      "updating": "Đang Cập Nhật...",
+      "loading": "Đang Tải...",
+      "creating": "Đang Tạo...",
+      "submitting": "Đang Gửi...",
+      "deleting": "Đang Xóa..."
     },
     "validation": {
       "name_required": "Tên là bắt buộc",
@@ -69,9 +75,12 @@
       "department_required": "Phòng ban là bắt buộc",
       "role_required": "Vai trò là bắt buộc"
     },
-    "error": {
+    "errors": {
+      "unauthorized_message": "Bạn không có quyền truy cập vào trang này.",
+      "back_home": "Quay Về Trang Chủ",
       "login_failed": "Đăng nhập thất bại. Vui lòng kiểm tra thông tin đăng nhập.",
-      "operation_failed": "Thao tác thất bại. Vui lòng thử lại."
+      "operation_failed": "Thao tác thất bại. Vui lòng thử lại.",
+      "update_employee": "Cập nhật nhân viên thất bại"
     },
     "header": {
       "welcome": "Chào mừng",

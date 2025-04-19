@@ -2,11 +2,11 @@
   <div class="dashboard">
     <div class="stats">
       <div class="stat-card">
-        <h2>Departments</h2>
+        <h2>{{ t("dashboard.total_departments") }}</h2>
         <p>{{ departmentCount }}</p>
       </div>
       <div class="stat-card">
-        <h2>Employees</h2>
+        <h2>{{ t("dashboard.total_employees") }}</h2>
         <p>{{ employeeCount }}</p>
       </div>
     </div>
@@ -17,12 +17,12 @@
 import { ref, onMounted } from "vue";
 import employeeService from "@/services/employee.service.js";
 import departmentService from "@/services/department.service.js";
+import { useI18n } from "vue-i18n";
 
-// Khai báo biến để lưu số lượng phòng ban và nhân viên
 const departmentCount = ref(0);
 const employeeCount = ref(0);
+const { t } = useI18n();
 
-// Hàm lấy số lượng phòng ban
 const fetchDepartmentCount = async () => {
   try {
     const response = await departmentService.getDepartments();
@@ -32,7 +32,6 @@ const fetchDepartmentCount = async () => {
   }
 };
 
-// Hàm lấy số lượng nhân viên
 const fetchEmployeeCount = async () => {
   try {
     const response = await employeeService.getEmployees();
@@ -42,7 +41,6 @@ const fetchEmployeeCount = async () => {
   }
 };
 
-// Khi component được render, lấy dữ liệu
 onMounted(() => {
   fetchDepartmentCount();
   fetchEmployeeCount();
